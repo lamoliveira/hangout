@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hangout</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Press a letter to start playing!</p>
+    
+    <p>You choose - <span id="spuser-text"><strong>...Nothing.</strong></span></p>
+
+    <p><br>  Correct Word: <span id="sprightword"><strong>__ </strong></span>
+    </p>
+    <p><br>  Wrong Letters (<span id="spsumwrongletter"><strong>0</strong></span>): - <span id="spwrongletter"><strong>__</strong></span>
+</p>
+  </div>
+
+  <script type="text/javascript">
+    // Creating variables to hold the number of wrong and right They start at 0. sum of letters set to the lengh mannualy.
+
+    var vnsumrightletter = 0;
+    var vnsumwrongletter = 0;
+    var vapossiblewords = ["Mickey","Minnie","Bootcamp"];
+    var vsword = "bootcamp";
+    
+    // Let's start by grabbing a reference to the <spans> below.
+      var spuserText = document.getElementById("spuser-text");
+      var spsumwrongletter = document.getElementById("spsumwrongletter");
+      var spwrongletter = document.getElementById("spwrongletter");
+      var vawrongletter = ["_","_","_","_","_","_"];
+      var vswrongletter = "_ _ _ _ _ _"; 
+      //spwrongletter.textContent = vswrongletter;
+      var sprightword = document.getElementById("sprightword");
+      //var varightword = ["_","_","_","_","_","_"];
+      var varightword = [""];
+
+     // var vsrightword = "_ _ _ _ _ _";
+//      sprightword.textContent = vsrightword;
+      var vsuserGuess= "";
+
+    function setarrayword (vsword) {
+        for (i=0; i<vsword.length;i++) {
+            varightword[i] = vsword.charAt(i);
+        }
+    }
+
+    function testsameletter(vbtestsameletter) 
+      { 
+        for (i=0; i<vswrongletter.length; i++) {
+            console.log(vswrongletter);
+           if (vswrongletter.charAt(i) === vsuserGuess ) {
+                console.log("Found letter wrong" );
+                vbtestsameletter = true;
+            } else {
+                 console.log("samewrong"+i);
+                }
+        }
+
+           for (i=0; i<varightword.length; i++) {
+            console.log(varightword);
+           if (varightword[i] === vsuserGuess ) {
+                console.log("Found letter right" );
+                vbtestsameletter = true;
+            } else {
+                 console.log("sameright"+i);
+                }
+           }
+          return vbtestsameletter;
+      }
+    function testuserguess(vbtestuserguess) 
+      { for (i=0; i<vsword.length; i++) {
+        if (vsword.charAt(i) === vsuserGuess ) {
+          vnsumrightletter++;
+          varightword[i] = vsuserGuess ;
+          console.log("found" + vnsumrightletter);
+           // vsrightword = varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
+            var tempword= "";// varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
+            for (j=0;j<vsword.length;j++){
+                tempword=tempword+varightword[j]+" ";
+            }
+            sprightword.textContent = tempword;
+            vbtestuserguess = true;
+        } else {
+                console.log("Letter NOT found");
+               }
+       }
+          return vbtestuserguess;
+     }
+
+    function newword() {
+        vapossiblewords = ["Mickey","Minnie","internet","hypertext","Bootcamp","development","Brazilian","Princesstaylor","javascript","florida","university"];
+        varightword = [""];
+        // Randomly chooses a word from the options array. This is the Computer's choice.
+        vsword = vapossiblewords[Math.floor(Math.random() * vapossiblewords.length)];
+        vsword = vsword.toLowerCase();
+        console.log(vsword);
+        for (i=0;i<vsword.length;i++) {
+            varightword[i] = "_"; 
+        }
+        console.log(varightword);
+      //  varightword = ["_","_","_","_","_","_"];
+        //vsrightword = "_ _ _ _ _ _";
+        var tempword = "";
+        for (i=0;i<vsword.length;i++) {
+            tempword = tempword + varightword[i] + " ";
+        }
+        console.log(tempword);
+        sprightword.textContent = tempword;
+    }      
+
+     function restartgame() {
+       vnsumrightletter = 0;
+       vnsumwrongletter = 0;
+       vawrongletter = ["_","_","_","_","_","_"];
+       vswrongletter = "_ _ _ _ _ _";
+       spwrongletter.textContent = vswrongletter;
+       spuserText.textContent = "...Type a letter";
+       spsumwrongletter.textContent = vnsumwrongletter;
+       vsuserGuess="";
+       newword()
+    }
+    
+    restartgame();
+
+      function lostwarning()
+      {
+        alert("Game Over. Try again!!");
+        restartgame();
+      }
+      function winwarning()
+      {
+        alert( vsword + "- Congratulation. Play again!!");
+        restartgame();
+      }
+    function letternotfound(){
+        vnsumwrongletter++;
+        spsumwrongletter.textContent = vnsumwrongletter;
+        vawrongletter[vnsumwrongletter-1] = vsuserGuess +" ";
+        vswrongletter = vawrongletter[0]+" "+vawrongletter[1]+" "+vawrongletter[2]+" "+vawrongletter[3]+" "+vawrongletter[4]+" "+vawrongletter[5];
+        spwrongletter.textContent = vswrongletter;
+        spuserText.textContent = vsuserGuess + " - NOT FOUND...Type another letter";
+        spsumwrongletter.textContent = vnsumwrongletter;
+    }
+    function isaletter(pvsuserguess)
+      { var abc="abcdefghijklmnopqrstuvxywz";
+        for (i=0; i< abc.length ;i++)
+        { 
+          if (pvsuserguess === abc.charAt(i) ) 
+          {
+            return true;
+          }
+          else
+           {console.log(i);}
+        }
+      }
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+      // Determines which key was pressed.
+      vsuserGuess = event.key;
+      vsuserGuess = vsuserGuess.toLowerCase();
+      spuserText.textContent = vsuserGuess;
+      if (isaletter(vsuserGuess)) // This function determines if is a letter 
+        {var vbtestsameletter = false;
+        vbtestsameletter = testsameletter(vbtestsameletter); // This function verify if letter was already chosen
+        if (vbtestsameletter === true) {
+          console.log("Choose another Letter");
+          spuserText.textContent = vsuserGuess + " - again?" + "...Type another letter";}
+        else 
+         {var vbtestkey = false;
+          vbtestkey = testuserguess(vbtestkey); //If userguess is valid, verify if the letter exists in the word
+         if (vbtestkey === true)  
+            {console.log("Letter Found"); // FOUND -
+            spuserText.textContent = vsuserGuess + " - FOUND" + "...Type another letter";} 
+         else  
+            {console.log("Letter NOT found");//NOT FOUND - variables updated on function 
+            letternotfound(); //update values
+            }
+         if (vnsumwrongletter===6) //verify the number of wrong letters permited before death. Fixed 6
+          {lostwarning();}
+         if (vnsumrightletter === vsword.length) //verify the number of right letters
+          {winwarning();} //Win             
+         }
+        }    
+      else {spuserText.textContent = "...Type a letter";}
+    }        
+    
+  </script>
+
+</body>
+
+</html>
