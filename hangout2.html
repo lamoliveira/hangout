@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hangout</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Press a letter to start playing!</p>
+    
+    <p>You choose - <span id="spuser-text"><strong>...Nothing.</strong></span></p>
+
+    <p><br>  Correct Word: <span id="sprightword"><strong>__ </strong></span>
+    </p>
+    <p><br>  Wrong Letters (<span id="spsumwrongletter"><strong>0</strong></span>): - <span id="spwrongletter"><strong>__</strong></span>
+</p>
+  </div>
+
+  <script type="text/javascript">
+    // Creating variables to hold the number of wrong and right They start at 0. sum of letters set to the lengh mannualy.
+
+    var vnsumrightletter = 0;
+    var vnsumwordletter = 6;
+    var vnsumwrongletter = 0;
+    var vsword = "mickey";
+    var vaword = ["m","i","c","k","e","y"];
+    
+    
+    // Let's start by grabbing a reference to the <spans> below.
+      var spuserText = document.getElementById("spuser-text");
+      var spsumwrongletter = document.getElementById("spsumwrongletter");
+      var spwrongletter = document.getElementById("spwrongletter");
+      var vawrongletter = ["_","_","_","_","_","_"];
+      var vswrongletter = "_ _ _ _ _ _"; 
+      //spwrongletter.textContent = vswrongletter;
+      var sprightword = document.getElementById("sprightword");
+      var varightword = ["_","_","_","_","_","_"];
+      var vsrightword = "_ _ _ _ _ _";
+//      sprightword.textContent = vsrightword;
+      var vsuserGuess= "";
+
+    function testuserguess(vbtestuserguess) 
+      { for (i=0; i<vsword.length; i++) {
+        if (vsword.charAt(i) === vsuserGuess ) {
+          vnsumrightletter++;
+          varightword[i] = vsuserGuess + " ";
+          console.log("achou" + vnsumrightletter);
+            vsrightword = varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
+            console.log(vsrightword)
+            sprightword.textContent = vsrightword;
+           
+          vbtestuserguess = true;
+        } else {
+          console.log("erro"+i);
+        }
+          }
+          return vbtestuserguess;
+        }
+
+     function restartgame() {
+       vnsumrightletter = 0;
+       vnsumwordletter = 6;
+       vnsumwrongletter = 0;
+       vsword = "mickey";
+       vawrongletter = ["_","_","_","_","_","_"];
+       vswrongletter = "_ _ _ _ _ _";
+       spwrongletter.textContent = vswrongletter;
+       spuserText.textContent = "...Nothing";
+       spsumwrongletter.textContent = vnsumwrongletter;
+       vsuserGuess="";
+       vsword = "mickey";
+       vaword = ["m","i","c","k","e","y"];
+       varightword = ["_","_","_","_","_","_"];
+       vsrightword = "_ _ _ _ _ _";
+       sprightword.textContent = vsrightword;
+    }
+    
+    restartgame();
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+      // Determines which key was pressed.
+      vsuserGuess = event.key;
+      spuserText.textContent = event.key;
+      // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
+      var vbtestkey = false;
+      vbtestkey = testuserguess(vbtestkey);
+      if (vbtestkey === true)  {
+          console.log("Letter Found");
+        } else  
+          { 
+            console.log("Letter NOT found");
+            vnsumwrongletter++;
+            spsumwrongletter.textContent = vnsumwrongletter;
+            vawrongletter[vnsumwrongletter-1] = vsuserGuess +" ";
+            vswrongletter = vawrongletter[0]+" "+vawrongletter[1]+" "+vawrongletter[2]+" "+vawrongletter[3]+" "+vawrongletter[4]+" "+vawrongletter[5];
+            spwrongletter.textContent = vswrongletter;
+            spsumwrongletter.textContent = vnsumwrongletter;
+          }
+      if (vnsumwrongletter===6){
+          restartgame();}
+    }              
+      
+        
+    
+  </script>
+
+</body>
+
+</html>

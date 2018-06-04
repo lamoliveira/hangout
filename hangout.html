@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hangout</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Press a letter to start playing!</p>
+    
+    <p>You choose - <span id="user-text"><strong>...Nothing.</strong></span></p>
+
+    <p><br>  Correct Word: <span id="rightletter1"><strong>__ </strong></span>
+              <span id="rightletter2"><strong>__ </strong></span>
+              <span id="rightletter3"><strong>__ </strong></span>
+              <span id="rightletter4"><strong>__ </strong></span>
+              <span id="rightletter5"><strong>__ </strong></span>
+              <span id="rightletter6"><strong>__ </strong></span>
+    </p>
+    <p><br>  Wrong Letters (<span id="sumwrongletterstext"><strong>0</strong></span>): - <span id="wrongletter"><strong>_ _ _ _ _ _</strong></span>
+</p>
+  </div>
+
+  <script type="text/javascript">
+    // Creating variables to hold the number of wrong and right They start at 0. sum of letters set to the lengh mannualy.
+
+          var sumrightletters = 0;
+    var sumwordletters = 6;
+    var word = "mickey";
+    //var wordarray = ["m","i","c","k","e","y"];
+    wordarray = word.charAt(0);
+    console.log(wordarray);
+    // Let's start by grabbing a reference to the <spans> below.
+      var userText = document.getElementById("user-text");
+      var sumwrongletters = document.getElementById("sumwronglettertext");
+      var wrongletter = document.getElementById("wrongletter");
+      var wrongletterarray = ["_ ","_ ","_ ","_ ","_ ","_ "];
+      wrongletter.textContent = wrongletterarray[0]+wrongletterarray[1]+wrongletterarray[2]+wrongletterarray[3]+wrongletterarray[4]+wrongletterarray[5];
+      var rightletter1 = document.getElementById("rightletter1");   
+      var rightletter2 = document.getElementById("rightletter2");
+      var rightletter3 = document.getElementById("rightletter3");
+      var rightletter4 = document.getElementById("rightletter4");
+      var rightletter5 = document.getElementById("rightletter5");
+      var rightletter6 = document.getElementById("rightletter6");
+
+    //function poparrayword() 
+    //  { for (i=0, i<word.length, i++){
+    //    poparrayword = wordarray.entries;
+    //     }
+    //    wordarray = 
+    //  }
+
+     function restartgame() {
+       sumrightletters = 0;
+       sumwordletters = 6;
+       sumwrongletters = 0;
+       word = "mickey";
+       wordarray = ["m","i","c","k","e","y"];
+       wrongletterarray = ["_ ","_ ","_ ","_ ","_ ","_ "];
+       wrongletter.textContent = wrongletterarray[0]+wrongletterarray[1]+wrongletterarray[2]+wrongletterarray[3]+wrongletterarray[4]+wrongletterarray[5];
+       userText.textContent = "...Nothing";
+       sumwrongletterstext.textContent = 0;
+      // wordarray = ["m","i","c","k","e","y"];
+    }
+    
+    restartgame();
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+      // Determines which key was pressed.
+      var userGuess = event.key;
+      userText.textContent = event.key;
+      // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
+      if (userGuess === "m")  {
+          sumrightletters++;
+          rightletter1.textContent = userGuess ;
+        }
+          else if (userGuess === "i") {
+          sumrightletters++;
+          rightletter2.textContent = userGuess ;
+        } else if (userGuess === "c") {
+          sumrightletters++;
+          rightletter3.textContent = userGuess ;
+        } else if (userGuess === "k") {
+          sumrightletters++;
+          rightletter4.textContent = userGuess ;
+        } else if (userGuess === "e") {
+          sumrightletters++;
+          rightletter5.textContent = userGuess ;
+        } else if (userGuess === "y") {
+          sumrightletters++;
+                    rightletter6.textContent = userGuess ;
+        } else  
+        { 
+          sumwrongletters++;
+          wrongletterarray[sumwrongletters-1]=userGuess;
+          wrongletter.textContent = wrongletterarray[0]+wrongletterarray[1]+wrongletterarray[2]+wrongletterarray[3]+wrongletterarray[4]+wrongletterarray[5];
+          sumwrongletterstext.textContent = sumwrongletters;
+          if (sumwrongletters===6){
+          restartgame();}
+        }
+        //console.log(userGuess);
+        //console.log(sumrightletters);
+        //console.log(sumwrongletters);              
+      }
+        
+    
+  </script>
+
+</body>
+
+</html>
