@@ -49,15 +49,15 @@
                 <h1>Hangman</h1>
               </div>
                 <div id="img1">
-                  <img src="images/hangman1.png" alt="Hangman" class="img2">
+                  <img id="imghang" src="images/hangman1.png" alt="Hangman" class="img2">
                 
                   
                 </div>
 
                 <div id="p1">
                   <div id="game">
-                    <p><br><br>Press a letter to start playing! <br></p>
-                    
+                    <p><br><br>Press a letter to start playing, or Click the image to restart! <br></p>
+                    <p id="starttext"><br> <br></p>
                     <p><br><br>You choose - <span id="spuser-text"><strong>...Nothing.</strong></span></p>
                 
                     <p><br><br>  Correct Word: <span id="sprightword"><strong>__ </strong></span>
@@ -87,6 +87,8 @@
 
   var vnsumrightletter = 0;
   var vnsumwrongletter = 0;
+  var vnloss = 0;
+  var vnwins = 0;
   var vapossiblewords = ["Mickey","Minnie","Bootcamp"];
   var vsword = "bootcamp";
   
@@ -95,15 +97,6 @@
     var spsumwrongletter = document.getElementById("spsumwrongletter");
     var spwrongletter = document.getElementById("spwrongletter");
     var sphangimage = document.getElementById("hangimage");
-    
-    var vahangimage = ['<img src="images/hangman1.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman2.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman3.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman4.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman5.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman6.png" alt="Hangman" class="img2">',
-                       '<img src="images/hangman7.png" alt="Hangman" class="img2">'];
-
     var vawrongletter = ["_","_","_","_","_","_"];
     var vswrongletter = "_ _ _ _ _ _"; 
     //spwrongletter.textContent = vswrongletter;
@@ -124,22 +117,22 @@
   function testsameletter(vbtestsameletter) 
     { 
       for (i=0; i<vswrongletter.length; i++) {
-          console.log(vswrongletter);
+          
          if (vswrongletter.charAt(i) === vsuserGuess ) {
               console.log("Found letter wrong" );
               vbtestsameletter = true;
           } else {
-               console.log("samewrong"+i);
+               //console.log("same letter wrong"+i);
               }
       }
 
          for (i=0; i<varightword.length; i++) {
-          console.log(varightword);
+          
          if (varightword[i] === vsuserGuess ) {
-              console.log("Found letter right" );
+              //console.log("Found letter right" );
               vbtestsameletter = true;
           } else {
-               console.log("sameright"+i);
+               //console.log("sameright"+i);
               }
          }
         return vbtestsameletter;
@@ -149,8 +142,7 @@
       if (vsword.charAt(i) === vsuserGuess ) {
         vnsumrightletter++;
         varightword[i] = vsuserGuess ;
-        console.log("found" + vnsumrightletter);
-         // vsrightword = varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
+        //console.log("found" + vsword.length);
           var tempword= "";// varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
           for (j=0;j<vsword.length;j++){
               tempword=tempword+varightword[j]+" ";
@@ -158,7 +150,7 @@
           sprightword.textContent = tempword;
           vbtestuserguess = true;
       } else {
-              console.log("Letter NOT found");
+              //console.log("Letter NOT found");
              }
      }
         return vbtestuserguess;
@@ -170,18 +162,18 @@
       // Randomly chooses a word from the options array. This is the Computer's choice.
       vsword = vapossiblewords[Math.floor(Math.random() * vapossiblewords.length)];
       vsword = vsword.toLowerCase();
-      console.log(vsword);
+      //console.log(vsword);
       for (i=0;i<vsword.length;i++) {
           varightword[i] = "_"; 
       }
-      console.log(varightword);
+      //console.log(varightword);
     //  varightword = ["_","_","_","_","_","_"];
       //vsrightword = "_ _ _ _ _ _";
       var tempword = "";
       for (i=0;i<vsword.length;i++) {
           tempword = tempword + varightword[i] + " ";
       }
-      console.log(tempword);
+      //console.log(tempword);
       sprightword.textContent = tempword;
   }      
 
@@ -194,20 +186,27 @@
      spuserText.textContent = "...Type a letter";
      spsumwrongletter.textContent = vnsumwrongletter;
      vsuserGuess="";
-     newword()
+     newword();
+     $("#imghang").attr("src","images/hangman1.png");
+     $("#starttext").text("Total Wins: " + vnwins +" - Total loss: " + vnloss);
   }
   
-  restartgame();
-
-    function lostwarning()
+        function lostwarning()
     {
-      alert("Game Over. Try again!!");
-      restartgame();
+      //alert("Game Over. Click on Hangman to Try again!!");
+      vnloss++;
+      console.log("lost: " + vsword);
+      $("#starttext").text("Game Over. The correct word is: " + vsword +".Total Wins: " + vnwins +" - Total loss: " + vnloss);
+      
+      //restartgame();
     }
     function winwarning()
     {
-      alert( vsword + "- Congratulation. Play again!!");
-      restartgame();
+      //alert( vsword + "- Congratulation. Play again!!");
+      console.log("Win: " + vsword);
+      vnwins++;
+      $("#starttext").text("Congratulations. The correct word is: " + vsword +".Total Wins: " + vnwins +" - Total loss: " + vnloss);
+      //restartgame();
     }
   function letternotfound(){
       vnsumwrongletter++;
@@ -216,8 +215,12 @@
       vswrongletter = vawrongletter[0]+" "+vawrongletter[1]+" "+vawrongletter[2]+" "+vawrongletter[3]+" "+vawrongletter[4]+" "+vawrongletter[5];
       spwrongletter.textContent = vswrongletter;
       spuserText.textContent = vsuserGuess + " - NOT FOUND...Type another letter";
-      sphangimage.textContent = vahangimage[vnsumwrongletter];
+      //sphangimage.textContent = vahangimage[vnsumwrongletter];
       spsumwrongletter.textContent = vnsumwrongletter;
+
+      $("#imghang").attr("src","images/hangman"+(vnsumwrongletter+1)+ ".png");
+     
+//      $( "#greatphoto" ).attr( "alt", "Beijing Brush Seller" );
   }
   function isaletter(pvsuserguess)
     { var abc="abcdefghijklmnopqrstuvxywz";
@@ -228,41 +231,55 @@
           return true;
         }
         else
-         {console.log(i);}
+        {}// {console.log(i);}
       }
     }
+  
+  restartgame();
 
   // This function is run whenever the user presses a key.
   document.onkeyup = function(event) {
     // Determines which key was pressed.
+    if ((vnsumwrongletter===6) || (vnsumrightletter === vsword.length)) //verify if it is a restart
+            {restartgame();}
+
+    if (vnsumwrongletter>5) {restartgame();}
     vsuserGuess = event.key;
     vsuserGuess = vsuserGuess.toLowerCase();
     spuserText.textContent = vsuserGuess;
+    console.log("1-test is a letter");
     if (isaletter(vsuserGuess)) // This function determines if is a letter 
       {var vbtestsameletter = false;
-      vbtestsameletter = testsameletter(vbtestsameletter); // This function verify if letter was already chosen
-      if (vbtestsameletter === true) {
-        console.log("Choose another Letter");
-        spuserText.textContent = vsuserGuess + " - again?" + "...Type another letter";}
-      else 
-       {var vbtestkey = false;
-        vbtestkey = testuserguess(vbtestkey); //If userguess is valid, verify if the letter exists in the word
-       if (vbtestkey === true)  
-          {console.log("Letter Found"); // FOUND -
-          spuserText.textContent = vsuserGuess + " - FOUND" + "...Type another letter";} 
-       else  
-          {console.log("Letter NOT found");//NOT FOUND - variables updated on function 
-          letternotfound(); //update values
-          }
-       if (vnsumwrongletter===6) //verify the number of wrong letters permited before death. Fixed 6
-        {lostwarning();}
-       if (vnsumrightletter === vsword.length) //verify the number of right letters
-        {winwarning();} //Win             
-       }
+        console.log("2-test is an already chosen letter");
+        vbtestsameletter = testsameletter(vbtestsameletter); // This function verify if letter was already chosen
+        if (vbtestsameletter === true) {
+          console.log("2.1 - already chosen. Choose another Letter");
+          spuserText.textContent = vsuserGuess + " - again?" + "...Type another letter";}
+        else 
+        { var vbtestkey = false;
+          console.log("2.2-test if exists in the correct word");
+          vbtestkey = testuserguess(vbtestkey); //If userguess is valid, verify if the letter exists in the word
+          if (vbtestkey === true)  
+            { console.log("2.2.1 - Letter Found"); // FOUND -
+            spuserText.textContent = vsuserGuess + " - FOUND" + "...Type another letter";} 
+          else  
+            { console.log("2.2.2 - Letter NOT found");//NOT FOUND - variables updated on function 
+            letternotfound(); //update values
+            }
+          console.log(""); 
+          if (vnsumwrongletter===6) //verify the number of wrong letters permited before death. Fixed 6
+            {lostwarning();}
+          if (vnsumrightletter === vsword.length) //verify the number of right letters
+            {winwarning();} //Win             
+        }
       }    
     else {spuserText.textContent = "...Type a letter";}
   }        
   
+  $("#img1").on("click", function() {
+        restartgame();
+      });
+
 </script>
 
 </body>
