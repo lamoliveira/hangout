@@ -1,0 +1,89 @@
+/**
+ * Float Layout Activity
+ * Luiz Oliveira
+ **/
+
+* {
+  text-align: left;
+  font-style: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; 
+}
+
+body {  width: 980px;
+    background: black;
+    color: #ffffff;
+    background-color:black;
+    font-size: 18px;
+
+}
+#imgmusic{
+  float: left;
+  margin-left: 200px;
+}
+
+h1,h5,h6 {
+    -webkit-text-fill-color: white;
+}
+
+.hang2 {
+  display: none; 
+}
+
+.wrapper {
+    /* Box-model */
+    width: 980px;
+  
+    /* Positioning */
+    margin: 40px auto;
+  }
+  body{width: 980px;}
+  #img1 { float: left;}
+  
+  #img2 { float: none;
+    visibility: hidden;}
+  .img2{margin-right: 10px;}
+
+
+@media screen and (max-width: 980px) {
+  
+  body {  width: 980px;
+        }  
+  .img2 {
+     width: 200px;
+    }
+    }
+  #p1 {float: right;}
+/* Additional Screen Sizes */
+/* Width at 320px and below */
+@media screen and (max-width: 768px) {
+    
+body {  width: 768px;
+}
+    .img2 {
+      
+      width: 150px;
+      
+    }
+  }
+    /* Width at 640px and below */
+  @media screen and (max-width: 640px) {
+    
+    
+body {  width: 640px;
+}
+   .img2 {
+    
+     width: 100px;
+   }
+   
+  }
+     /* Width at 320px and below */
+  @media screen and (max-width: 320px) {
+    
+body {  width: 320px;
+}
+    .img2 {
+      
+      width: 50px;
+    }
+    
+   } 

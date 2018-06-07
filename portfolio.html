@@ -23,17 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">About</a>
+          <a id="aa" class="nav-link" href="index.html">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="portfolio.html">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contato.html">Contact</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="hangman.html">Hangman</a>
         </li>
       </ul>
     </div>
@@ -48,24 +44,27 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <img src="images/hangman.jpg" alt="Hangman" class="img-fluid" alt="Responsive image">
+            <img id="hangman" src="images/hangman.jpg" alt="Hangman" class="img-fluid" alt="Responsive image">
           </div>
           <div class="col-md-6">
-            <img src="images/rpggame.jpg" alt="RPG Game" class="img-fluid" alt="Responsive image">
+            <img id="hangman80" src="images/80shangman.JPG" alt="80's Hangman" class="img-fluid" alt="Responsive image">
           </div>
         </div>
         <div class="row">  
           <div class="col-md-6">
-            <img src="images/trivia.jpg" alt="Trivia Game" class="img-fluid" alt="Responsive image">
+            <img id="trivia"src="images/trivia.jpg" alt="Trivia Game" class="img-fluid" alt="Responsive image">
           </div>
         
            <div class="col-md-6">
-            <img src="images/rutgers.jpg" alt="Rutgers Info Widget" class="img-fluid" alt="Responsive image">
+            <img id="rutgers" src="images/rutgers.jpg" alt="Rutgers Info Widget" class="img-fluid" alt="Responsive image">
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-              <img src="images/rock.jpg" alt="Rock" class="img-fluid" alt="Responsive image">
+              <img id="rock" src="images/rock.jpg" alt="Rock" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-md-6">
+              <img id="rpg" src="images/rpggame.jpg" alt="RPG Game" class="img-fluid" alt="Responsive image">
             </div>
         </div>
 
@@ -82,7 +81,20 @@
    <!--Bootstrap JavaScript CDN -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
+  <script>
+  
+  $("#hangman").on("click", function() {
+        console.log("clicou hangman")
+        window.open("hangman.html","Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+      }
+      )
 
+   $("#hangman80").on("click", function() {
+        console.log("clicou 80shangman")
+        window.open("hangman80s.html","Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+      }
+      )
+  </script>
 
 
 </body>
