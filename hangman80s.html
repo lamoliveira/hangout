@@ -6,24 +6,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-  <title>80's Hangman</title>
+  <title>80's Hangman</title>  
   <link rel="stylesheet" type="text/css" href="assets/reset.css">
-
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link rel="stylesheet" type="text/css" href="assets/hangman80.css">
-    
-  
 </head>
 
 <body>
-
-
         <div id="cont1" class="container">
           <div>
             <img id="img1" src="images/80shangman.jpg" alt="80's Hangman">
             <div class="hangman">
+              <br><br><br><br><br><br>
               <h1>80's Music Band Hangman</h1>
             </div>
             </div>
@@ -31,17 +27,14 @@
         <div class="container">
               
                 <div id="img1">
-                  <iframe id="mp3" width="400" height="200" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
+                  <iframe id="mp3" width="400" height="150" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
                   <img id="imgmusic" src="images/80music.jpg" alt="80's Hangman"> 
-                  <!--https://youtu.be/s__rX_WL100?list=PLtso_D2e-GWS5bMCmljOfi6dsZt9xwFzL&t=32 -->
                 </div>
-
                 <div id="p1">
                   <div id="game">
                     <p>Press a letter to start playing, or Click the image to restart! <br></p>
                     <p id="starttext"><br> <br></p>
                     <p><br>You choose - <span id="spuser-text"><strong>...Nothing.</strong></span></p>
-                
                     <p><br>  Current Word: <span id="sprightword"><strong>__ </strong></span>
                     </p>
                     <p><br>  Number of guesses remaining: (<span id="spsumwrongletter"><strong>12</strong></span>): - <span id="spwrongletter"><strong>__</strong></span>
@@ -61,39 +54,36 @@
 
 
 <script type="text/javascript">
-  // Creating variables to hold the number of wrong and right They start at 0. sum of letters set to the lengh mannualy.
+  // Creating variables to hold the number of wrong and right They start at 0.
 
-  var vnsumrightletter = 0;
-  var vnsumwrongletter = 0;
-  var vnloss = 0;
-  var vnwins = 0;
-  var vapossiblewords = [];
-  var vaimages = [];
-  var vamp3 = [];
-  var vsword = "";
+  var vnsumrightletter = 0; //sum of tight guesses
+  var vnsumwrongletter = 0; // sum of wrong guesses
+  var vnloss = 0; // number of losses
+  var vnwins = 0; // number of wins
+  var vapossiblewords = []; // array of posible bands
+  var vaimages = []; // array with the path to each correspondent image
+  var vamp3 = []; // array with the path to each correspondent mp3. for this homework was not posible to use mp3 and is merely ilustrative. Try to use youtube but musics cant be embbeded
+  var vsword = ""; //string with the band of computer lottery 
   
   // Let's start by grabbing a reference to the <spans> below.
     var spuserText = document.getElementById("spuser-text");
     var spsumwrongletter = document.getElementById("spsumwrongletter");
     var spwrongletter = document.getElementById("spwrongletter");
-    var vawrongletter = ["_","_","_","_","_","_","_","_","_","_","_","_"];
-    var vswrongletter = "_ _ _ _ _ _ _ _ _ _ _ _"; 
-    //spwrongletter.textContent = vswrongletter;
+    var vawrongletter = ["_","_","_","_","_","_","_","_","_","_","_","_"]; //setup mannualy but can use a for to improve code
+    var vswrongletter = "_ _ _ _ _ _ _ _ _ _ _ _";  //setup mannualy but can use a for to improve code
     var sprightword = document.getElementById("sprightword");
-    //var varightword = ["_","_","_","_","_","_"];
-    var varightword = [""];
-    var vnindexmusic=0;
+    var varightword = [""]; // used to update each right letter chosen by user
+    var vnindexmusic=0; // index for each band, image and mp3
 
-   // var vsrightword = "_ _ _ _ _ _";
-//      sprightword.textContent = vsrightword;
-    var vsuserGuess= "";
-
+    var vsuserGuess= ""; // For each letter typed by user
+  
+  // update the array of the right word
   function setarrayword (vsword) {
       for (i=0; i<vsword.length;i++) {
           varightword[i] = vsword.charAt(i);
       }
   }
-
+  // tests if user typed the same letter more than once. Verified in the right and wrong letters 
   function testsameletter(vbtestsameletter) 
     { 
       for (i=0; i<vswrongletter.length; i++) {
@@ -109,7 +99,6 @@
          for (i=0; i<varightword.length; i++) {
           
          if (varightword[i] === vsuserGuess ) {
-              //console.log("Found letter right" );
               vbtestsameletter = true;
           } else {
                //console.log("sameright"+i);
@@ -117,15 +106,16 @@
          }
         return vbtestsameletter;
     }
+    // tests if user guess exists in the word/band and returns true if found. Update the sprightword with the letter found
   function testuserguess(vbtestuserguess) 
     { for (i=0; i<vsword.length; i++) {
       if (vsword.charAt(i) === vsuserGuess ) {
         vnsumrightletter++;
-        varightword[i] = vsuserGuess ;
-        //console.log("found" + vsword.length);
-          var tempword= "";// varightword[0]+" "+varightword[1]+" "+varightword[2]+" "+varightword[3]+" "+varightword[4]+" "+varightword[5];
+        varightword[i] = vsuserGuess ; //Update the sprightword with the letter found
+      
+          var tempword= "";
           for (j=0;j<vsword.length;j++){
-              tempword=tempword+varightword[j]+" ";
+              tempword=tempword+varightword[j]+" "; // updates the content of right word with a blank just for stetics purposes
           }
           sprightword.textContent = tempword;
           vbtestuserguess = true;
@@ -140,13 +130,12 @@
       vapossiblewords = ["madonna","genesis","queen"];
       vaimages = ["images/madonna.jpg","images/genesis.jpg","images/queen.jpg"];
       vamp3 = ["mp3/family.mp3?autoplay=1","mp3/vasco.mp3?autoplay=1","mp3/summer.mp3?autoplay=1"];
-     
+     // 3 examples just to confirm the logic. Tried with youtube but it was impossible to use embbeded. The 3 mp3 dont relate with images...
       varightword = [""];
-      // Randomly chooses a word from the options array. This is the Computer's choice.
+      // Randomly chooses a word/band from the options array. This is the Computer's choice.
       vsword = vapossiblewords[Math.floor(Math.random() * vapossiblewords.length)];
       vnindexmusic = vapossiblewords.indexOf(vsword);
       vsword = vsword.toLowerCase();
-      //console.log(vsword);
       for (i=0;i<vsword.length;i++) {
           varightword[i] = "_"; 
       }
@@ -156,6 +145,8 @@
       }
       //console.log(tempword);
       sprightword.textContent = tempword;
+      $("#imgmusic").attr("src","images/80music.jpg"); //first image to show 
+     $("#mp3").attr("src",""); // no mp3 in the new band. It will be uodated when user win the name of the band
   }      
 
    function restartgame() {
@@ -165,14 +156,10 @@
      vswrongletter = "_ _ _ _ _ _ _ _ _ _ _ _";
      spwrongletter.textContent = vswrongletter;
      spuserText.textContent = "...Type a letter";
-     spsumwrongletter.textContent = vnsumwrongletter;
+     spsumwrongletter.textContent = 12-vnsumwrongletter;
      vsuserGuess="";
      newword();
-  
-     
      $("#starttext").text("Total Wins: " + vnwins +" - Total loss: " + vnloss);
-    // youtube(1);
-
   }
   
         function lostwarning()
@@ -181,18 +168,13 @@
       vnloss++;
       console.log("lost: " + vsword);
       $("#starttext").text("Game Over. The correct 80's band is: " + vsword +".Total Wins: " + vnwins +" - Total loss: " + vnloss);
-      
-      //restartgame();
     }
     function winwarning()
     {
-      //alert( vsword + "- Congratulation. Play again!!");
-      console.log("Win: " + vsword);
       vnwins++;
       $("#starttext").text("Congratulations. The correct 80's band is: " + vsword +".Total Wins: " + vnwins +" - Total loss: " + vnloss);
       $("#imgmusic").attr("src",vaimages[vnindexmusic]);
      $("#mp3").attr("src",vamp3[vnindexmusic]);
-      //restartgame();
     }
   function letternotfound(){
       vnsumwrongletter++;
@@ -201,12 +183,7 @@
       vswrongletter = vawrongletter[0]+" "+vawrongletter[1]+" "+vawrongletter[2]+" "+vawrongletter[3]+" "+vawrongletter[4]+" "+vawrongletter[5] +" "+ vawrongletter[6]+" "+vawrongletter[7]+" "+vawrongletter[8]+" "+vawrongletter[9]+" "+vawrongletter[10]+" "+vawrongletter[11];
       spwrongletter.textContent = vswrongletter;
       spuserText.textContent = vsuserGuess + " - NOT FOUND...Type another letter";
-      //sphangimage.textContent = vahangimage[vnsumwrongletter];
       spsumwrongletter.textContent = 12-vnsumwrongletter;
-
-      //$("#imghang").attr("src","images/hangman"+(vnsumwrongletter+1)+ ".png");
-     
-//      $( "#greatphoto" ).attr( "alt", "Beijing Brush Seller" );
   }
   function isaletter(pvsuserguess)
     { var abc="abcdefghijklmnopqrstuvxywz";
@@ -217,7 +194,7 @@
           return true;
         }
         else
-        {}// {console.log(i);}
+        {}
       }
     }
   
@@ -226,7 +203,7 @@
   // This function is run whenever the user presses a key.
   document.onkeyup = function(event) {
     // Determines which key was pressed.
-    if ((vnsumwrongletter===12) || (vnsumrightletter === vsword.length)) //verify if it is a restart
+    if ((vnsumwrongletter===12) || (vnsumrightletter === vsword.length)) //verify if it is a restart. Call here to show the result before start a new game
             {restartgame();}
 
     if (vnsumwrongletter>11) {restartgame();}
@@ -263,12 +240,12 @@
   }        
   
   $("#img1").on("click", function() {
-        if (vnsumwrongletter>0){vnloss++};
+        if (vnsumwrongletter>0){vnloss++}; //If user started the game it counts as a loss
         restartgame();
       });
 
-  $("#imgmusic").on("click", function() {
-        if (vnsumwrongletter>0){vnloss++};
+  $("#imgmusic").on("click", function() { 
+        if (vnsumwrongletter>0){vnloss++};//If user started the game it counts as a loss
         restartgame();
       });
 
