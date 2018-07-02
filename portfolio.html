@@ -8,18 +8,19 @@
   <title>Portfolio</title>
   <link rel="stylesheet" type="text/css" href="assets/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/style.css">
-     <!-- Bootstrap CDN -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" style="background-color: #4aaaa5;" href="#">Luiz Oliveira</a>
-  
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
@@ -35,88 +36,91 @@
     </div>
   </nav>
 
-  
+
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
         <div class="page-header">
           <h1>Porfolio</h1>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <img id="hangman" src="images/hangman.jpg" alt="Hangman" class="img-fluid" alt="Responsive image">
-          </div>
-          <div class="col-md-6">
-            <img id="hangman80" src="images/80shangman.jpg" alt="80's Hangman" class="img-fluid" alt="Responsive image">
-          </div>
-        </div>
-        <div class="row">  
-          <div class="col-md-6">
-            <img id="trivia"src="images/trivia.jpg" alt="Trivia Game" class="img-fluid" alt="Responsive image">
-          </div>
-        
-           <div class="col-md-6">
-            <img id="crystal" src="images/crystal.jpg" alt="Rutgers Info Widget" class="img-fluid" alt="Responsive image">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <img id="movie" src="images/movie.jpg" alt="Movie" class="img-fluid" alt="Responsive image">
-            </div>
-            <div class="col-md-6">
-              <img id="gifsearch" src="images/gifsearch.jpg" alt="Gif and Movie Search" class="img-fluid" alt="Responsive image">
-            </div>
-        </div>
-
       </div>
-
+      <div class="row">
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="hangman" src="images/hangman.jpg" alt="Hangman" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="hangman80" src="images/80shangman.jpg" alt="80's Hangman" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="trivia" src="images/trivia.jpg" alt="Trivia Game" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="crystal" src="images/crystal.jpg" alt="Rutgers Info Widget" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="movie" src="images/movie.jpg" alt="Movie" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+          <img id="gifsearch" src="images/gifsearch.jpg" alt="Gif and Movie Search" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3">
+            <img id="train" src="images/train.jpg" alt="Train" class="img-fluid" alt="Responsive image">
+          </div>
+          
+      </div>
     </div>
   </div>
+  </div>
   <footer>
-      Copyright
-    </footer>
-  <!--jQuery CDN --> 
+    Copyright
+  </footer>
+  <!--jQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  
-   <!--Bootstrap JavaScript CDN -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
-  <script>
-  
-  $("#hangman").on("click", function() {
-        console.log("clicou hangman");
-        window.open("hangman.html","Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
 
-   $("#hangman80").on("click", function() {
-        console.log("clicou 80shangman");
-        window.open("hangman80s.html","Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
-      
-   $("#crystal").on("click", function() {
-        console.log("clicou crystal");
-        window.open("https://lamoliveira.github.io/unit-4-game/","Crystal", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
-  
-   $("#trivia").on("click", function() {
-        console.log("clicou trivia");
-        window.open("https://lamoliveira.github.io/5unit-game/","Trivia", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
-      $("#movie").on("click", function() {
-        console.log("clicou movie");
-        window.open("https://lamoliveira.github.io/movietrivia/","Movie", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
-      $("#gifsearch").on("click", function() {
-        console.log("clicou gifsearch");
-        window.open("https://lamoliveira.github.io/6unit-buttons/","Movie", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
-      }
-      )
-      
+  <!--Bootstrap JavaScript CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+
+    $("#hangman").on("click", function () {
+      console.log("clicou hangman");
+      window.open("hangman.html", "Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+
+    $("#hangman80").on("click", function () {
+      console.log("clicou 80shangman");
+      window.open("hangman80s.html", "Hangman", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+
+    $("#crystal").on("click", function () {
+      console.log("clicou crystal");
+      window.open("https://lamoliveira.github.io/unit-4-game/", "Crystal", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+
+    $("#trivia").on("click", function () {
+      console.log("clicou trivia");
+      window.open("https://lamoliveira.github.io/5unit-game/", "Trivia", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+    $("#movie").on("click", function () {
+      console.log("clicou movie");
+      window.open("https://lamoliveira.github.io/movietrivia/", "Movie", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+    $("#gifsearch").on("click", function () {
+      console.log("clicou gifsearch");
+      window.open("https://lamoliveira.github.io/6unit-buttons/", "6unit", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+    $("#train").on("click", function () {
+      console.log("clicou train");
+      window.open("https://lamoliveira.github.io/7unit/", "Train", "toolbar=no,scrollbars=no,resizable=yes,top=50,left=50,width=1000,height=750");
+    }
+    )
+
   </script>
 
 

@@ -24,7 +24,9 @@ footer {
     margin-top: 10px;
 
 }
-
+.img-fluid{
+  margin: 5%; 
+}
 
 .navbar-brand {
     background-color: #4aaaa5;
